@@ -1268,7 +1268,7 @@
 
             try {
                 // Tenta carregar o mapa da CDN
-                const world = await d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
+               const world = await d3.json("https://unpkg.com/world-atlas@2.0.2/countries-110m.json");
 
                 svgMap.append("g")
                     .attr("class", "countries")
