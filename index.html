@@ -805,6 +805,10 @@
 
     <script>
         // Dados dos países
+        // IMPORTANTE: Para que a bandeira e as informações detalhadas apareçam para mais países,
+        // você precisa adicionar os dados correspondentes aqui.
+        // O 'countryCode' (ex: "BR", "US") deve ser o código ISO 3166-1 alpha-2.
+        // As constelações são apenas exemplos e podem não corresponder à visibilidade real de cada país.
         const countriesData = {
             "BR": { 
                 name: "Brasil", 
@@ -859,18 +863,18 @@
                 population: "26 milhões",
                 language: "Inglês",
                 currency: "Dólar Australiano (AUD)",
-                constellations: ["Cruzeiro do Sul", "Centauro", "Carina"]
+                constellations: ["Cruzeiro do Sul", "Centauro", "Escorpião"]
             },
-            "FR": {
-                name: "França",
-                capital: "Paris",
-                lat: 48.85,
-                lon: 2.35,
-                timezone: "UTC+2",
-                population: "65 milhões",
-                language: "Francês",
-                currency: "Euro (EUR)",
-                constellations: ["Órion", "Ursa Maior", "Pégaso"]
+            "CA": {
+                name: "Canadá",
+                capital: "Ottawa",
+                lat: 45.42,
+                lon: -75.69,
+                timezone: "UTC-5 a UTC-8",
+                population: "38 milhões",
+                language: "Inglês, Francês",
+                currency: "Dólar Canadense (CAD)",
+                constellations: ["Ursa Menor", "Cassiopeia", "Cefeu"]
             },
             "DE": {
                 name: "Alemanha",
@@ -881,312 +885,324 @@
                 population: "83 milhões",
                 language: "Alemão",
                 currency: "Euro (EUR)",
-                constellations: ["Ursa Maior", "Cisne", "Lira"]
+                constellations: ["Ursa Maior", "Cefeu", "Lira"]
             },
-            "IN": {
+            "FR": {
+                name: "França",
+                capital: "Paris",
+                lat: 48.85,
+                lon: 2.35,
+                timezone: "UTC+2",
+                population: "65 milhões",
+                language: "Francês",
+                currency: "Euro (EUR)",
+                constellations: ["Órion", "Cão Maior", "Gêmeos"]
+            },
+            "IN": { // Índia
                 name: "Índia",
                 capital: "Nova Delhi",
                 lat: 28.61,
                 lon: 77.20,
                 timezone: "UTC+5:30",
-                population: "1.4 bilhão",
+                population: "1.4 bilhões",
                 language: "Hindi, Inglês",
                 currency: "Rúpia Indiana (INR)",
-                constellations: ["Órion", "Escorpião", "Ursa Maior"]
+                constellations: ["Ursa Maior", "Órion", "Escorpião"]
             },
-            "CN": {
+            "CN": { // China
                 name: "China",
                 capital: "Pequim",
                 lat: 39.90,
-                lon: 116.39,
+                lon: 116.40,
                 timezone: "UTC+8",
-                population: "1.4 bilhão",
+                population: "1.4 bilhões",
                 language: "Mandarim",
                 currency: "Yuan (CNY)",
-                constellations: ["Dragão", "Ursa Maior", "Cassiopeia"]
+                constellations: ["Ursa Maior", "Dragão", "Cisne"]
             },
-            "RU": {
+            "RU": { // Rússia
                 name: "Rússia",
                 capital: "Moscou",
                 lat: 55.75,
                 lon: 37.61,
                 timezone: "UTC+2 a UTC+12",
-                population: "146 milhões",
+                population: "144 milhões",
                 language: "Russo",
-                currency: "Rublo (RUB)",
-                constellations: ["Ursa Maior", "Órion", "Cassiopeia"]
+                currency: "Rublo Russo (RUB)",
+                constellations: ["Ursa Maior", "Ursa Menor", "Cefeu"]
             },
-             "CA": { 
-                name: "Canadá", 
-                capital: "Ottawa", 
-                lat: 45.42, 
-                lon: -75.69, 
-                timezone: "UTC-3:30 a UTC-8",
-                population: "38 milhões",
-                language: "Inglês, Francês",
-                currency: "Dólar Canadense (CAD)",
-                constellations: ["Ursa Maior", "Cassiopeia", "Cisne"]
-            },
-            "MX": { 
-                name: "México", 
-                capital: "Cidade do México", 
-                lat: 19.43, 
-                lon: -99.13, 
+            "MX": { // México
+                name: "México",
+                capital: "Cidade do México",
+                lat: 19.43,
+                lon: -99.13,
                 timezone: "UTC-5 a UTC-8",
-                population: "128 milhões",
+                population: "126 milhões",
                 language: "Espanhol",
                 currency: "Peso Mexicano (MXN)",
-                constellations: ["Órion", "Escorpião", "Cão Maior"]
+                constellations: ["Órion", "Touro", "Escorpião"]
             },
-            "AR": { 
-                name: "Argentina", 
-                capital: "Buenos Aires", 
-                lat: -34.60, 
-                lon: -58.38, 
-                timezone: "UTC-3",
-                population: "45 milhões",
-                language: "Espanhol",
-                currency: "Peso Argentino (ARS)",
-                constellations: ["Cruzeiro do Sul", "Centauro", "Órion"]
-            },
-            "ZA": { 
-                name: "África do Sul", 
-                capital: "Pretória", 
-                lat: -25.74, 
-                lon: 28.22, 
+            "ZA": { // África do Sul (já estava, mas bom para referência)
+                name: "África do Sul",
+                capital: "Pretória",
+                lat: -25.74,
+                lon: 28.22,
                 timezone: "UTC+2",
-                population: "59 milhões",
-                language: "Zulu, Xhosa, Africâner, Inglês, etc.",
+                population: "60 milhões",
+                language: "Africâner, Inglês, Zulu, Xhosa...",
                 currency: "Rand (ZAR)",
                 constellations: ["Cruzeiro do Sul", "Centauro", "Carina"]
             },
-            "EG": { 
-                name: "Egito", 
-                capital: "Cairo", 
-                lat: 30.04, 
-                lon: 31.23, 
+            "EG": { // Egito (já estava, mas bom para referência)
+                name: "Egito",
+                capital: "Cairo",
+                lat: 30.04,
+                lon: 31.23,
                 timezone: "UTC+2",
-                population: "102 milhões",
+                population: "109 milhões",
                 language: "Árabe",
                 currency: "Libra Egípcia (EGP)",
-                constellations: ["Órion", "Touro", "Cassiopeia"]
+                constellations: ["Órion", "Touro", "Leão"]
             },
-            "NG": { 
-                name: "Nigéria", 
-                capital: "Abuja", 
-                lat: 9.07, 
-                lon: 7.49, 
-                timezone: "UTC+1",
-                population: "211 milhões",
-                language: "Inglês",
-                currency: "Naira (NGN)",
-                constellations: ["Órion", "Cão Maior", "Leão"]
-            },
-            "KE": { 
-                name: "Quênia", 
-                capital: "Nairóbi", 
-                lat: -1.29, 
-                lon: 36.82, 
-                timezone: "UTC+3",
-                population: "53 milhões",
-                language: "Suaíli, Inglês",
-                currency: "Xelim Queniano (KES)",
-                constellations: ["Órion", "Cão Maior", "Cruzeiro do Sul"]
-            },
-            "SA": { 
-                name: "Arábia Saudita", 
-                capital: "Riade", 
-                lat: 24.71, 
-                lon: 46.67, 
-                timezone: "UTC+3",
-                population: "35 milhões",
-                language: "Árabe",
-                currency: "Riyal Saudita (SAR)",
-                constellations: ["Órion", "Touro", "Escorpião"]
-            },
-            "PK": { 
-                name: "Paquistão", 
-                capital: "Islamabade", 
-                lat: 33.68, 
-                lon: 73.04, 
-                timezone: "UTC+5",
-                population: "220 milhões",
-                language: "Urdu, Inglês",
-                currency: "Rupia Paquistanesa (PKR)",
-                constellations: ["Ursa Maior", "Órion", "Touro"]
-            },
-            "ID": { 
-                name: "Indonésia", 
-                capital: "Jacarta", 
-                lat: -6.20, 
-                lon: 106.84, 
-                timezone: "UTC+7 a UTC+9",
-                population: "276 milhões",
-                language: "Indonésio",
-                currency: "Rupia Indonésia (IDR)",
-                constellations: ["Cruzeiro do Sul", "Órion", "Escorpião"]
-            },
-            "NG": { 
-                name: "Nigéria", 
-                capital: "Abuja", 
-                lat: 9.07, 
-                lon: 7.49, 
-                timezone: "UTC+1",
-                population: "211 milhões",
-                language: "Inglês",
-                currency: "Naira Nigeriana (NGN)",
-                constellations: ["Órion", "Cão Maior", "Leão"]
-            },
-            "SE": { 
-                name: "Suécia", 
-                capital: "Estocolmo", 
-                lat: 59.32, 
-                lon: 18.06, 
-                timezone: "UTC+2",
-                population: "10 milhões",
-                language: "Sueco",
-                currency: "Coroa Sueca (SEK)",
-                constellations: ["Ursa Maior", "Cisne", "Lira"]
-            },
-            "NO": { 
-                name: "Noruega", 
-                capital: "Oslo", 
-                lat: 59.91, 
-                lon: 10.75, 
-                timezone: "UTC+2",
-                population: "5 milhões",
-                language: "Norueguês",
-                currency: "Coroa Norueguesa (NOK)",
-                constellations: ["Ursa Maior", "Cisne", "Cassiopeia"]
-            },
-            "DK": { 
-                name: "Dinamarca", 
-                capital: "Copenhague", 
-                lat: 55.67, 
-                lon: 12.56, 
-                timezone: "UTC+2",
-                population: "5.8 milhões",
-                language: "Dinamarquês",
-                currency: "Coroa Dinamarquesa (DKK)",
-                constellations: ["Ursa Maior", "Cisne", "Lira"]
-            },
-            "FI": { 
-                name: "Finlândia", 
-                capital: "Helsinque", 
-                lat: 60.16, 
-                lon: 24.93, 
-                timezone: "UTC+3",
-                population: "5.5 milhões",
-                language: "Finlandês, Sueco",
-                currency: "Euro (EUR)",
-                constellations: ["Ursa Maior", "Cisne", "Cassiopeia"]
-            },
-            "IS": { 
-                name: "Islândia", 
-                capital: "Reykjavík", 
-                lat: 64.96, 
-                lon: -19.02, 
-                timezone: "UTC+0",
-                population: "370 mil",
-                language: "Islandês",
-                currency: "Coroa Islandesa (ISK)",
-                constellations: ["Ursa Maior", "Ursa Menor", "Cisne"]
-            },
-            "NZ": { 
-                name: "Nova Zelândia", 
-                capital: "Wellington", 
-                lat: -41.28, 
-                lon: 174.77, 
-                timezone: "UTC+12",
-                population: "5 milhões",
-                language: "Inglês, Maori",
-                currency: "Dólar Neozelandês (NZD)",
-                constellations: ["Cruzeiro do Sul", "Centauro", "Carina"]
-            },
-            "KR": { 
-                name: "Coreia do Sul", 
-                capital: "Seul", 
-                lat: 37.56, 
-                lon: 126.97, 
-                timezone: "UTC+9",
-                population: "51 milhões",
-                language: "Coreano",
-                currency: "Won Sul-Coreano (KRW)",
-                constellations: ["Ursa Maior", "Órion", "Touro"]
-            },
-            "ES": { 
-                name: "Espanha", 
-                capital: "Madri", 
-                lat: 40.41, 
-                lon: -3.70, 
-                timezone: "UTC+2",
-                population: "47 milhões",
-                language: "Espanhol",
-                currency: "Euro (EUR)",
-                constellations: ["Órion", "Touro", "Escorpião"]
-            },
-            "IT": { 
-                name: "Itália", 
-                capital: "Roma", 
-                lat: 41.90, 
-                lon: 12.49, 
+            "IT": { // Itália
+                name: "Itália",
+                capital: "Roma",
+                lat: 41.90,
+                lon: 12.49,
                 timezone: "UTC+2",
                 population: "59 milhões",
                 language: "Italiano",
                 currency: "Euro (EUR)",
+                constellations: ["Ursa Maior", "Órion", "Touro"]
+            },
+            "ES": { // Espanha
+                name: "Espanha",
+                capital: "Madri",
+                lat: 40.41,
+                lon: -3.70,
+                timezone: "UTC+2",
+                population: "47 milhões",
+                language: "Espanhol",
+                currency: "Euro (EUR)",
+                constellations: ["Ursa Maior", "Órion", "Touro"]
+            },
+            "NG": { // Nigéria
+                name: "Nigéria",
+                capital: "Abuja",
+                lat: 9.07,
+                lon: 7.49,
+                timezone: "UTC+1",
+                population: "218 milhões",
+                language: "Inglês, Hauçá, Iorubá, Igbo",
+                currency: "Naira (NGN)",
+                constellations: ["Órion", "Cão Maior", "Leão"]
+            },
+            "KE": { // Quênia
+                name: "Quênia",
+                capital: "Nairóbi",
+                lat: -1.28,
+                lon: 36.82,
+                timezone: "UTC+3",
+                population: "55 milhões",
+                language: "Suaíli, Inglês",
+                currency: "Xelim Queniano (KES)",
+                constellations: ["Cruzeiro do Sul", "Centauro", "Órion"]
+            },
+            "MA": { // Marrocos
+                name: "Marrocos",
+                capital: "Rabat",
+                lat: 34.02,
+                lon: -6.83,
+                timezone: "UTC+1",
+                population: "37 milhões",
+                language: "Árabe, Berber",
+                currency: "Dirham Marroquino (MAD)",
+                constellations: ["Ursa Maior", "Órion", "Touro"]
+            },
+            "DZ": { // Argélia
+                name: "Argélia",
+                capital: "Argel",
+                lat: 36.75,
+                lon: 3.04,
+                timezone: "UTC+1",
+                population: "45 milhões",
+                language: "Árabe, Berber",
+                currency: "Dinar Argelino (DZD)",
                 constellations: ["Órion", "Touro", "Leão"]
             },
-            "GR": { 
-                name: "Grécia", 
-                capital: "Atenas", 
-                lat: 37.98, 
-                lon: 23.72, 
-                timezone: "UTC+3",
-                population: "10 milhões",
-                language: "Grego",
-                currency: "Euro (EUR)",
-                constellations: ["Órion", "Lira", "Cisne"]
+            "GH": { // Gana
+                name: "Gana",
+                capital: "Acra",
+                lat: 5.55,
+                lon: -0.20,
+                timezone: "UTC+0",
+                population: "32 milhões",
+                language: "Inglês",
+                currency: "Cedi Ganês (GHS)",
+                constellations: ["Órion", "Cão Maior"]
             },
-            "TR": { 
-                name: "Turquia", 
-                capital: "Ancara", 
-                lat: 39.93, 
-                lon: 32.85, 
-                timezone: "UTC+3",
-                population: "84 milhões",
-                language: "Turco",
-                currency: "Lira Turca (TRY)",
-                constellations: ["Órion", "Touro", "Escorpião"]
+            "AO": { // Angola
+                name: "Angola",
+                capital: "Luanda",
+                lat: -8.83,
+                lon: 13.23,
+                timezone: "UTC+1",
+                population: "34 milhões",
+                language: "Português",
+                currency: "Kwanza (AOA)",
+                constellations: ["Cruzeiro do Sul", "Centauro"]
+            },
+            "MZ": { // Moçambique
+                name: "Moçambique",
+                capital: "Maputo",
+                lat: -25.96,
+                lon: 32.57,
+                timezone: "UTC+2",
+                population: "32 milhões",
+                language: "Português",
+                currency: "Metical Moçambicano (MZN)",
+                constellations: ["Cruzeiro do Sul", "Centauro"]
+            },
+            "CD": { // República Democrática do Congo
+                name: "República Democrática do Congo",
+                capital: "Kinshasa",
+                lat: -4.44,
+                lon: 15.26,
+                timezone: "UTC+1 a UTC+2",
+                population: "95 milhões",
+                language: "Francês, Lingala, Quicongo, Suaíli, Tshiluba",
+                currency: "Franco Congolês (CDF)",
+                constellations: ["Cruzeiro do Sul", "Órion"]
             }
         };
 
-        const defaultCountryCode = "BR";
-        const defaultCountryTopoId = "076"; // TopoJSON ID para Brasil
+        // Mapeamento de IDs do TopoJSON para os códigos de país em countriesData
+        // IMPORTANTE: Você precisa adicionar o mapeamento aqui para cada país que adicionar em `countriesData`.
+        // Os IDs numéricos podem ser encontrados nos dados do world-atlas (ou inspecionando o 'd.id' no console).
+        const topoJsonIdToCountryCodeMap = {
+            "076": "BR", // Brasil
+            "840": "US", // Estados Unidos
+            "826": "GB", // Reino Unido
+            "392": "JP", // Japão
+            "036": "AU", // Austrália
+            "124": "CA", // Canadá
+            "276": "DE", // Alemanha
+            "250": "FR",  // França
+            "356": "IN",  // Índia
+            "156": "CN",  // China
+            "643": "RU",  // Rússia
+            "484": "MX",  // México
+            "710": "ZA",  // África do Sul
+            "818": "EG",  // Egito
+            "380": "IT",  // Itália
+            "724": "ES",   // Espanha
+            "566": "NG",  // Nigéria
+            "404": "KE",  // Quênia
+            "504": "MA",  // Marrocos
+            "012": "DZ",   // Argélia
+            "288": "GH",  // Gana
+            "024": "AO",  // Angola
+            "508": "MZ",  // Moçambique
+            "180": "CD"   // República Democrática do Congo
+            // EXEMPO: Adicione mais mapeamentos aqui (você precisará do ID TopoJSON para cada país)
+            // "032": "AR" // Argentina
+        };
 
-        let currentSelectedCountryCode = defaultCountryCode;
-        let currentSelectedCountryData = countriesData[defaultCountryCode];
+        // Dados das constelações (mantidos)
+        const constellationsData = {
+            "Cruzeiro do Sul": {
+                stars: ["Acrux", "Mimosa", "Gacrux"],
+                color: "#FFD700"
+            },
+            "Órion": {
+                stars: ["Betelgeuse", "Rigel", "Bellatrix"],
+                color: "#ADD8E6"
+            },
+            "Ursa Maior": {
+                stars: ["Dubhe", "Merak", "Alioth"],
+                color: "#90EE90"
+            },
+            "Escorpião": {
+                stars: ["Antares", "Shaula", "Sargas"],
+                color: "#FF6347"
+            },
+            "Centauro": {
+                stars: ["Alpha Centauri", "Hadar", "Menkent"],
+                color: "#DA70D6"
+            },
+            "Touro": {
+                stars: ["Aldebaran", "El Nath", "Alcyone"],
+                color: "#FFA07A"
+            },
+            "Ursa Menor": {
+                stars: ["Polaris", "Kochab", "Pherkad"],
+                color: "#B0E0E6"
+            },
+            "Cassiopeia": {
+                stars: ["Shedar", "Caph", "Ruchbah"],
+                color: "#FFC0CB"
+            },
+            "Cefeu": {
+                stars: ["Alderamin", "Alfirk", "Errai"],
+                color: "#87CEFA"
+            },
+            "Cão Maior": {
+                stars: ["Sirius", "Adhara", "Wezen"],
+                color: "#F0E68C"
+            },
+            "Pégaso": {
+                stars: ["Markab", "Scheat", "Algenib"],
+                color: "#DDA0DD"
+            },
+            "Lira": {
+                stars: ["Vega", "Sheliak", "Sulafat"],
+                color: "#AFEEEE"
+            },
+            "Gêmeos": {
+                stars: ["Castor", "Pollux", "Alhena"],
+                color: "#FFDAB9"
+            },
+            "Dragão": {
+                stars: ["Thuban", "Etamin", "Rastaban"],
+                color: "#C0C0C0"
+            },
+            "Cisne": {
+                stars: ["Deneb", "Albireo", "Sadr"],
+                color: "#ADD8E6"
+            },
+            "Carina": {
+                stars: ["Canopus", "Miaplacidus", "Avior"],
+                color: "#FFFACD"
+            },
+            "Leão": {
+                stars: ["Regulus", "Denebola", "Algieba"],
+                color: "#F0E68C"
+            }
+        };
+
+        // Dados de planetas visíveis (simulados)
+        const visiblePlanetsData = [
+            { name: "Vênus", color: "#FFD700" },
+            { name: "Marte", color: "#FF4500" },
+            { name: "Júpiter", color: "#DAA520" },
+            { name: "Saturno", color: "#BDB76B" }
+        ];
+
+        // Dados de chuvas de meteoros (simulados)
+        const meteorShowersData = [
+            { name: "Líridas", active: false, peak: "22 de Abr" },
+            { name: "Eta Aquáridas", active: true, peak: "6 de Mai" },
+            { name: "Perseidas", active: false, peak: "12 de Ago" }
+        ];
 
         // Variáveis globais para o mapa D3
-        let svgMap;
-        let projection;
-        let pathGenerator;
-        let zoomBehavior;
-        let currentTransform = d3.zoomIdentity;
-        let rotationInterval; // Para a rotação automática
+        let svgMap, projection, pathGenerator, zoomBehavior, rotationInterval;
+        let currentRotation = 0;
+        let activeCountryCode = null; // Para rastrear o país atualmente selecionado (clicado)
+        let currentTransform = d3.zoomIdentity; // Inicializa a transformação do zoom
+        let currentHoveredCountryD3Datum = null; // Armazena o datum do país atualmente hovered
 
-        // Elementos do DOM
-        const themeToggle = document.getElementById('theme-toggle');
-        const stellarTimeElement = document.getElementById('stellar-time');
-        const currentDateElement = document.getElementById('current-date');
-        const locationInfoElement = document.getElementById('location-info');
-        const siderealTimeElement = document.getElementById('sidereal-time');
-        const constellationElement = document.getElementById('constellation');
-        const sunAltitudeElement = document.getElementById('sun-altitude');
-        const moonPhaseElement = document.getElementById('moon-phase');
-        const visiblePlanetsElement = document.getElementById('visible-planets');
-        const meteorShowersElement = document.getElementById('meteor-showers');
-
-        // Detalhes do país no painel lateral
+        // Elementos do DOM para o painel de detalhes do país (no clique)
         const countryDetailsPanel = document.getElementById('country-details-panel');
         const detailsFlag = document.getElementById('details-flag');
         const detailsCountryName = document.getElementById('details-country-name');
@@ -1196,618 +1212,748 @@
         const detailsCurrency = document.getElementById('details-currency');
         const detailsCoords = document.getElementById('details-coords');
         const detailsTimezone = document.getElementById('details-timezone');
-        const detailsNewsContent = document.getElementById('details-news-content');
-        const refreshDetailsNewsBtn = document.getElementById('refresh-details-news');
-        const summarizeNewsBtn = document.getElementById('summarize-news-btn');
-        const newsSummaryOutput = document.getElementById('news-summary-output');
+        const detailsNewsContent = document.getElementById('details-news-content'); // Novo elemento para notícias no painel de detalhes
+        const refreshDetailsNewsBtn = document.getElementById('refresh-details-news'); // Novo botão de atualização de notícias
 
-        // Botões de controle do mapa
-        const zoomInBtn = document.getElementById('zoom-in');
-        const zoomOutBtn = document.getElementById('zoom-out');
-        const resetMapBtn = document.getElementById('reset-map');
-        const rotateMapBtn = document.getElementById('rotate-map');
-
-        // Hover info do mapa
+        // Elementos do DOM para a caixa de informações SIMPLIFICADAS com bandeira no mapa (no hover)
         const mapCountryHoverInfo = document.getElementById('map-country-hover-info');
         const mapHoverFlag = document.getElementById('map-hover-flag');
         const mapHoverName = document.getElementById('map-hover-name');
-        let currentHoveredCountryD3Datum = null;
 
 
-        // LLM Feature elements
-        const generateSpaceFactBtn = document.getElementById('generate-space-fact-btn');
+        // Elementos do DOM para as novas funcionalidades LLM
         const spaceFactOutput = document.getElementById('space-fact-output');
+        const generateSpaceFactBtn = document.getElementById('generate-space-fact-btn');
+        const constellationDetails = document.getElementById('constellation-details');
         const exploreConstellationBtn = document.getElementById('explore-constellation-btn');
-        const constellationDetailsOutput = document.getElementById('constellation-details');
+        const summarizeNewsBtn = document.getElementById('summarize-news-btn'); // Novo botão para resumir notícias
+        const newsSummaryOutput = document.getElementById('news-summary-output'); // Novo elemento para o resumo das notícias
 
-        // Chave da API NewsAPI (ATENÇÃO: Mantenha em ambiente de desenvolvimento ou use um proxy)
-        const NEWS_API_KEY = 'YOUR_NEWS_API_KEY'; // **Substitua pela sua chave REAL da NewsAPI**
+        // URL de imagem de placeholder para bandeiras ausentes
+        const PLACEHOLDER_FLAG_URL = 'https://placehold.co/24x18/cccccc/333333?text=N/A'; // Ajustado para o novo tamanho do hover
 
-        // Cores para os planetas visíveis
-        const planetColors = {
-            "Mercúrio": "#A9A9A9", // Cinza escuro
-            "Vênus": "#DAA520",    // Dourado
-            "Marte": "#B22222",    // Vermelho tijolo
-            "Júpiter": "#CD853F",  // Castanho claro
-            "Saturno": "#D2B48C",  // Bege
-            "Urano": "#87CEEB",    // Azul celeste
-            "Netuno": "#4169E1"    // Azul royal
-        };
 
-        // --- Funções de Ajuda ---
-
-        function formatTime(date) {
-            return date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
-        }
-
-        function formatDate(date) {
-            return date.toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' });
-        }
-
-        function getMoonPhase(jd) {
-            const phase = Astronomy.MoonPhase(jd);
-            if (phase < 0.05 || phase > 0.95) return "Lua Nova";
-            if (phase < 0.20) return "Crescente Riscada";
-            if (phase < 0.30) return "Quarto Crescente";
-            if (phase < 0.45) return "Gibosa Crescente";
-            if (phase < 0.55) return "Lua Cheia";
-            if (phase < 0.70) return "Gibosa Minguante";
-            if (phase < 0.80) return "Quarto Minguante";
-            return "Minguante Riscada";
-        }
-
-        async function fetchNews(query) {
-            if (NEWS_API_KEY === 'YOUR_NEWS_API_KEY') {
-                console.warn("NewsAPI Key não configurada. Por favor, substitua 'YOUR_NEWS_API_KEY' pela sua chave real.");
-                return [];
-            }
-            try {
-                // Para usar a NewsAPI em produção, você precisará de um plano pago ou rodar em localhost.
-                // Esta URL busca as 5 principais notícias em português para o país.
-                const url = `https://newsapi.org/v2/top-headlines?q=${query}&language=pt&pageSize=5&apiKey=${NEWS_API_KEY}`;
-                const response = await fetch(url);
-                const data = await response.json();
-                if (data.status === "ok") {
-                    return data.articles;
-                } else {
-                    console.error("Erro na NewsAPI:", data.message);
-                    return [];
-                }
-            } catch (error) {
-                console.error("Erro ao buscar notícias:", error);
-                return [];
-            }
-        }
-
-        // --- Funções de Atualização da UI ---
-
-        function updateDateTime() {
-            const now = new Date();
-            currentDateElement.textContent = formatDate(now);
-            stellarTimeElement.textContent = formatTime(now);
-        }
-
-        function updateAstronomyInfo(lat, lon) {
-            const now = new Date();
-            const jd = Astronomy.Make=from=UTC(now.getFullYear(), now.getMonth() + 1, now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds());
-            const geo = new Astronomy.L=ocation(lat, lon, 0); // Altitude 0 por padrão
-
-            const lst = Astronomy.SiderealTime(jd, lon);
-            siderealTimeElement.textContent = Astronomy.Hour=Angle.To=String(lst);
-
-            const sun = Astronomy.Sun=Position(jd);
-            const sunHor = Astronomy.Equatorial=To=Horizontal(sun.ra, sun.dec, geo, jd);
-            sunAltitudeElement.textContent = sunHor.alt.toFixed(2) + "°";
-
-            moonPhaseElement.textContent = getMoonPhase(jd);
-
-            // Planetas visíveis
-            const planets = ["Mercúrio", "Vênus", "Marte", "Júpiter", "Saturno", "Urano", "Netuno"];
-            visiblePlanetsElement.innerHTML = '';
-            let anyVisible = false;
-
-            planets.forEach(planetName => {
-                try {
-                    const body = Astronomy[planetName];
-                    const pos = Astronomy.Equatorial(body, jd);
-                    const hor = Astronomy.Equatorial=To=Horizontal(pos.ra, pos.dec, geo, jd);
-
-                    // Considerar visível se acima de 0 graus de altitude e dia/noite adequado
-                    // Simplificado: apenas acima do horizonte
-                    if (hor.alt > 0) { 
-                        const li = document.createElement('li');
-                        li.innerHTML = `<span class="planet-icon" style="background-color: ${planetColors[planetName]}"></span> ${planetName} (${hor.alt.toFixed(1)}°)`;
-                        visiblePlanetsElement.appendChild(li);
-                        anyVisible = true;
-                    }
-                } catch (e) {
-                    console.error(`Erro ao calcular posição de ${planetName}:`, e);
-                }
-            });
-
-            if (!anyVisible) {
-                visiblePlanetsElement.innerHTML = '<li>Nenhum planeta visível no momento (acima do horizonte).</li>';
-            }
-
-            // Chuvas de Meteoros (dados estáticos de exemplo)
-            const meteorShowers = [
-                { name: "Lirídeos", active: (now.getMonth() === 3 && now.getDate() >= 16 && now.getDate() <= 25), peak: "22 de Abr" },
-                { name: "Perseidas", active: (now.getMonth() === 7 && now.getDate() >= 17 && now.getDate() <= 24), peak: "12 de Ago" },
-                { name: "Gemínidas", active: (now.getMonth() === 11 && now.getDate() >= 4 && now.getDate() <= 17), peak: "14 de Dez" }
-            ];
-
-            meteorShowersElement.innerHTML = '';
-            let anyShowerActive = false;
-            meteorShowers.forEach(shower => {
-                if (shower.active) {
-                    meteorShowersElement.innerHTML += `<p>${shower.name} (Pico: ${shower.peak})</p>`;
-                    anyShowerActive = true;
-                }
-            });
-            if (!anyShowerActive) {
-                meteorShowersElement.innerHTML = '<p>Nenhuma chuva de meteoros ativa.</p>';
-            }
-        }
-
-        async function updateCountryDetailsPanel(countryData) {
-            detailsFlag.src = `https://flagcdn.com/w320/${countryData.countryCode.toLowerCase()}.png`;
-            detailsCountryName.textContent = countryData.name;
-            detailsCapital.textContent = countryData.capital;
-            detailsPopulation.textContent = countryData.population;
-            detailsLanguage.textContent = countryData.language;
-            detailsCurrency.textContent = countryData.currency;
-            detailsCoords.textContent = `${countryData.lat.toFixed(2)}°, ${countryData.lon.toFixed(2)}°`;
-            detailsTimezone.textContent = countryData.timezone;
-
-            locationInfoElement.textContent = `Você está vendo dados para: ${countryData.name}`;
-
-            // Resetar LLM outputs
-            newsSummaryOutput.textContent = 'O resumo das notícias aparecerá aqui.';
-            constellationDetailsOutput.textContent = 'Detalhes da constelação aparecerão aqui.';
-            summarizeNewsBtn.disabled = true;
-            exploreConstellationBtn.disabled = false; // Habilita o botão de explorar constelação
-
-            await loadNewsForCountry(countryData.name);
-            countryDetailsPanel.classList.add('show');
-        }
-
-        async function loadNewsForCountry(countryName) {
-            detailsNewsContent.innerHTML = '<p class="loading-text">Carregando notícias...</p>';
-            summarizeNewsBtn.disabled = true;
-            newsSummaryOutput.textContent = 'O resumo das notícias aparecerá aqui.';
-
-            const articles = await fetchNews(countryName); // Buscar notícias pelo nome do país
-            detailsNewsContent.innerHTML = '';
-
-            if (articles.length > 0) {
-                articles.forEach(article => {
-                    const newsItem = document.createElement('div');
-                    newsItem.classList.add('news-item');
-                    newsItem.innerHTML = `
-                        <h3><a href="${article.url}" target="_blank" style="color: inherit; text-decoration: none;">${article.title || 'Sem título'}</a></h3>
-                        <p>${article.description || 'Sem descrição.'}</p>
-                        <div class="news-source">
-                            <span>${article.source.name || 'Fonte Desconhecida'}</span>
-                            <span>${article.publishedAt ? new Date(article.publishedAt).toLocaleDateString('pt-BR') : ''}</span>
-                        </div>
-                    `;
-                    detailsNewsContent.appendChild(newsItem);
-                });
-                summarizeNewsBtn.disabled = false; // Habilita botão de resumo se houver notícias
-            } else {
-                detailsNewsContent.innerHTML = '<p>Nenhuma notícia encontrada para este país.</p>';
-                summarizeNewsBtn.disabled = true;
-            }
-        }
-
-        // --- Funções do Mapa D3 ---
-
+        // Função para inicializar e renderizar/atualizar o mapa
         async function renderMap() {
             const mapLoading = document.getElementById('map-loading');
-            mapLoading.classList.add('show');
+            mapLoading.classList.add('show'); // Mostra o loading
 
             const mapContainer = document.getElementById('world-map');
             const width = mapContainer.offsetWidth;
             const height = mapContainer.offsetHeight;
 
             if (width === 0 || height === 0) {
-                console.warn("Contêiner do mapa tem dimensões zero. Atrasando renderização.");
-                mapLoading.classList.remove('show');
-                return;
+                console.warn("Contêiner do mapa tem largura ou altura zero. O mapa não será renderizado até que as dimensões sejam válidas.");
+                mapLoading.innerHTML = `<p style="color: var(--news-red);">Aguardando dimensões do mapa...</p>`;
+                // Não retorna imediatamente para que o ResizeObserver possa tentar novamente
+                mapLoading.classList.remove('show'); // Esconde o loading se as dimensões ainda forem zero
+                return; 
             }
 
-            // Remover SVG existente e limpar eventos para evitar duplicação e memory leaks
+            // Remove SVG existente para evitar duplicação em redesenho
             d3.select("#world-map svg").remove();
-            if (svgMap) { // Limpa eventos do SVG anterior
-                svgMap.on(".zoom", null);
-                svgMap.on(".drag", null); // O zoom behavior também gerencia o drag
-            }
 
             svgMap = d3.select("#world-map")
                 .append("svg")
                 .attr("width", "100%")
                 .attr("height", "100%")
-                .attr("viewBox", `0 0 ${width} ${height}`);
+                .attr("viewBox", `0 0 ${width} ${height}`); // Usa viewBox para responsividade
 
-            // Projeção e path generator
-            projection = d3.geoMercator()
-                .scale(width / 2 / Math.PI)
-                .translate([width / 2, height / 1.5]); // Ajuste para centralizar verticalmente
+            // Define a projeção
+            projection = d3.geoNaturalEarth1()
+                .scale(width / 5.5) // Ajusta a escala inicial para o tamanho do contêiner
+                .translate([width / 2, height / 2]);
 
             pathGenerator = d3.geoPath().projection(projection);
 
-            // Zoom behavior
-            zoomBehavior = d3.zoom()
-                .scaleExtent([0.5, 8]) // Limites de zoom
-                .on("zoom", (event) => {
-                    currentTransform = event.transform;
-                    svgMap.selectAll("path").attr("transform", event.transform);
-                    // Oculta a caixa de hover durante o zoom/pan
-                    mapCountryHoverInfo.classList.remove('show');
-                });
-
-            svgMap.call(zoomBehavior);
-
-            // Desabilitar duplo clique para zoom padrão para evitar comportamento inesperado
-            svgMap.on("dblclick.zoom", null); 
-
-            // Adiciona classes para cursor de arrastar
-            svgMap.on("mousedown", function() {
-                d3.select(this.parentNode).classed("grabbing", true);
-            })
-            .on("mouseup", function() {
-                d3.select(this.parentNode).classed("grabbing", false);
-            });
-
-            // CORREÇÃO: Usar URL válida para o World Atlas
             try {
-                const world = await d3.json("https://unpkg.com/world-atlas@2.0.2/countries-110m.json");
-                const countries = topojson.feature(world, world.objects.countries);
+                // Tenta carregar o mapa da CDN
+               const world = await d3.json("https://unpkg.com/world-atlas@2.0.2/countries-110m.json");
 
                 svgMap.append("g")
                     .attr("class", "countries")
                     .selectAll("path")
-                    .data(countries.features)
-                    .enter().append("path")
-                    .attr("class", "country")
+                    .data(topojson.feature(world, world.objects.countries).features)
+                    .enter()
+                    .append("path")
                     .attr("d", pathGenerator)
-                    .attr("fill", "rgba(77, 237, 255, 0.1)") // Cor padrão dos países
-                    .attr("stroke", "rgba(77, 237, 255, 0.3)")
+                    .attr("fill", "rgba(100, 149, 237, 0.4)")
+                    .attr("stroke", "rgba(255, 255, 255, 0.2)")
                     .attr("stroke-width", 0.5)
-                    .attr("id", d => `country-${d.id}`) // Adiciona ID para seleção fácil
-                    .on("click", function(event, d) {
-                        const countryCode = Object.keys(countriesData).find(key => countriesData[key].name === d.properties.name);
-                        if (countryCode) {
-                            currentSelectedCountryCode = countryCode;
-                            currentSelectedCountryData = countriesData[countryCode];
-                            // Remove a seleção de outros países
-                            svgMap.selectAll(".country").classed("selected", false);
-                            d3.select(this).classed("selected", true);
-                            updateCountryDetailsPanel(currentSelectedCountryData);
-                            updateAstronomyInfo(currentSelectedCountryData.lat, currentSelectedCountryData.lon);
-                            zoomToCountry(d); // Zoom no país clicado
-                        } else {
-                            console.warn(`Dados não encontrados para o país: ${d.properties.name}`);
-                            countryDetailsPanel.classList.remove('show'); // Oculta painel se país não tiver dados
-                            locationInfoElement.textContent = "País não disponível nos dados. Clique em outro.";
-                            // Remove seleção
-                            svgMap.selectAll(".country").classed("selected", false);
-                        }
-                        mapCountryHoverInfo.classList.remove('show'); // Oculta hover ao clicar
-                    })
+                    .attr("class", "country")
+                    .attr("id", d => `country-${d.id}`) // Prefixo para IDs válidos
                     .on("mouseover", function(event, d) {
-                        const countryCode = Object.keys(countriesData).find(key => countriesData[key].name === d.properties.name);
-                        if (countryCode) {
-                            currentHoveredCountryD3Datum = d; // Guarda o datum para o mousemove otimizado
-                            mapHoverFlag.src = `https://flagcdn.com/w320/${countryCode.toLowerCase()}.png`;
-                            mapHoverName.textContent = countriesData[countryCode].name;
-                            mapCountryHoverInfo.classList.add('show');
-                            // Adicionar classe para hover otimizado no CSS
-                            d3.select(this).classed("hovered", true);
-                        } else {
-                            mapCountryHoverInfo.classList.remove('show');
+                        currentHoveredCountryD3Datum = d; // Armazena o datum do país hovered
+                        const topoId = d.id;
+                        const countryCode = topoJsonIdToCountryCodeMap[topoId];
+                        const countryPath = d3.select(this);
+                        
+                        // Aplica escala no hover, exceto se for o país selecionado
+                        if (countryCode && countryCode !== activeCountryCode) {
+                            countryPath.classed("hovered", true).transition().duration(100).attr("transform", "scale(1.025)"); // Ajustado para 1.025
                         }
+                        // Chamar a nova função para exibir detalhes no mapa (no hover)
+                        showMapCountryHoverInfo(countryCode, d.properties.name, event, d);
                     })
-                    .on("mouseout", function() {
-                        mapCountryHoverInfo.classList.remove('show');
-                        currentHoveredCountryD3Datum = null;
-                        d3.select(this).classed("hovered", false); // Remove classe de hover
+                    .on("mouseout", function(event, d) {
+                        currentHoveredCountryD3Datum = null; // Limpa o datum ao sair do hover
+                        const topoId = d.id;
+                        const countryCode = topoJsonIdToCountryCodeMap[topoId];
+                        const countryPath = d3.select(this);
+
+                        // Reseta a escala apenas se não for o país selecionado
+                        if (countryCode && countryCode !== activeCountryCode) {
+                            countryPath.classed("hovered", false).transition().duration(100).attr("transform", "");
+                        }
+                        // Esconder a caixa de detalhes no mapa (no hover)
+                        hideMapCountryHoverInfo();
+                    })
+                    .on("click", function(event, d) {
+                        const topoId = d.id;
+                        const countryCode = topoJsonIdToCountryCodeMap[topoId];
+                        
+                        // Remover seleção anterior
+                        d3.selectAll(".country").classed("selected", false)
+                            .attr("fill", "rgba(100, 149, 237, 0.4)")
+                            .attr("stroke", "rgba(255, 255, 255, 0.2)")
+                            .attr("stroke-width", 0.5);
+                        
+                        // Destacar país selecionado
+                        d3.select(this).classed("selected", true)
+                            .attr("fill", "var(--neon-blue)")
+                            .attr("stroke", "white")
+                            .attr("stroke-width", 1.5);
+                        
+                        activeCountryCode = countryCode; // Atualiza o país ativo
+                        updateCountryInfo(countryCode); // Atualiza o painel principal de informações e notícias
+                        displayCountryDetails(countryCode, d.properties.name); // Atualiza o painel lateral com detalhes (no clique)
+                        zoomToCountry(d); // NOVO: Zoom no país clicado
                     });
 
-                // CORREÇÃO: Seleção inicial correta do Brasil
-                const brazilPath = svgMap.select(`#country-${defaultCountryTopoId}`);
-                if (!brazilPath.empty()) {
-                    // Pequeno delay para garantir que o SVG foi totalmente renderizado antes de despachar o clique
-                    setTimeout(() => brazilPath.dispatch("click"), 100);
+                // Configura o comportamento de zoom e arrastar (apenas uma vez)
+                // Se o svgMap for recriado, o zoomBehavior precisa ser reaplicado.
+                // Resetar o zoomBehavior para o novo SVG
+                zoomBehavior = d3.zoom()
+                    .scaleExtent([1, 8]) // Limites de zoom
+                    .on("zoom", (event) => {
+                        currentTransform = event.transform; // Atualiza a transformação atual
+                        svgMap.selectAll("path").attr("transform", event.transform);
+                        svgMap.select(".countries").attr("stroke-width", 0.5 / event.transform.k); // Escala a largura do traço
+                        // Reposiciona a caixa de informações no mapa durante o zoom/pan
+                        if (mapCountryHoverInfo.classList.contains('show') && currentHoveredCountryD3Datum) {
+                            showMapCountryHoverInfo(
+                                topoJsonIdToCountryCodeMap[currentHoveredCountryD3Datum.id], 
+                                currentHoveredCountryD3Datum.properties.name, 
+                                event, 
+                                currentHoveredCountryD3Datum
+                            );
+                        }
+                    });
+                svgMap.call(zoomBehavior);
+
+
+                // Adiciona funcionalidade de arrastar (pan)
+                svgMap.on("mousedown", function() {
+                    d3.select(this).classed("grabbing", true);
+                }).on("mouseup", function() {
+                    d3.select(this).classed("grabbing", false);
+                });
+
+                // Seleciona o Brasil por padrão (ID TopoJSON para Brasil é "076")
+                const defaultCountryTopoId = "076";
+                const defaultPath = d3.select(`#country-${defaultCountryTopoId}`);
+                if (!defaultPath.empty()) {
+                    defaultPath.dispatch("click");
+                } else {
+                    console.warn(`País com ID TopoJSON ${defaultCountryTopoId} (Brasil) não encontrado para seleção padrão.`);
+                    // Fallback para o primeiro país disponível se o padrão não for encontrado
+                    const firstAvailableTopoFeature = topojson.feature(world, world.objects.countries).features[0];
+                    if (firstAvailableTopoFeature) {
+                        d3.select(`#country-${firstAvailableTopoFeature.id}`).dispatch("click");
+                    }
                 }
 
             } catch (error) {
-                console.error("Erro ao carregar mapa:", error);
-                mapLoading.innerHTML = `<p>Erro ao carregar mapa: ${error.message}</p>`;
+                console.error("Erro fatal ao carregar ou renderizar o mapa:", error);
+                mapLoading.innerHTML = `<p style="color: var(--news-red);">Erro ao carregar mapa: ${error.message}. Tente recarregar a página.</p>`;
             } finally {
-                mapLoading.classList.remove('show');
+                mapLoading.classList.remove('show'); // Esconde o loading
             }
         }
 
-        // CORREÇÃO: Otimização do ResizeObserver
-        let lastWidth = 0, lastHeight = 0, resizeTimeout;
-        const resizeObserver = new ResizeObserver(entries => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                const mapContainer = document.getElementById('world-map');
-                const newWidth = mapContainer.offsetWidth;
-                const newHeight = mapContainer.offsetHeight;
-                
-                // Redesenha apenas se as dimensões mudaram significativamente
-                if (Math.abs(newWidth - lastWidth) > 10 || 
-                    Math.abs(newHeight - lastHeight) > 10) {
-                    lastWidth = newWidth;
-                    lastHeight = newHeight;
-                    renderMap();
-                }
-            }, 300); // Debounce de 300ms
-        });
-
-        // Observa o contêiner do mapa
-        resizeObserver.observe(document.getElementById('world-map'));
-
-
-        // CORREÇÃO: Otimização de movimento do mouse com requestAnimationFrame
-        let lastAnimationFrame;
-        document.addEventListener('mousemove', (e) => {
-            if (!mapCountryHoverInfo.classList.contains('show') || 
-                !currentHoveredCountryD3Datum) return;
-
-            if (lastAnimationFrame) cancelAnimationFrame(lastAnimationFrame);
-            
-            lastAnimationFrame = requestAnimationFrame(() => {
-                // Obtenha a posição do mouse em relação ao viewport
-                const mouseX = e.clientX;
-                const mouseY = e.clientY;
-
-                // Ajuste a posição da caixa de informações com base na posição do mouse
-                // Offset de 20px para não ficar exatamente em cima do cursor
-                mapCountryHoverInfo.style.left = `${mouseX + 20}px`;
-                // Centraliza verticalmente a caixa de informações em relação ao cursor
-                mapCountryHoverInfo.style.top = `${mouseY - mapCountryHoverInfo.offsetHeight / 2}px`;
-            });
-        });
-
-        // Função para zoom no país
+        // Função para dar zoom em um país específico
         function zoomToCountry(d) {
-            const [[x0, y0], [x1, y1]] = pathGenerator.bounds(d);
-            const width = svgMap.attr("width");
-            const height = svgMap.attr("height");
-            const scale = 0.9 / Math.max((x1 - x0) / width, (y1 - y0) / height);
-            const translate = [
-                (width - scale * (x0 + x1)) / 2,
-                (height - scale * (y0 + y1)) / 2
-            ];
-            
-            svgMap.transition().duration(750).call(
-                zoomBehavior.transform,
-                d3.zoomIdentity.translate(translate[0], translate[1]).scale(scale)
-            );
+            if (!svgMap || !pathGenerator || !projection) return;
+
+            const mapContainer = document.getElementById('world-map');
+            const width = mapContainer.offsetWidth;
+            const height = mapContainer.offsetHeight;
+
+            // Calcula o "bounding box" do país selecionado
+            const bounds = pathGenerator.bounds(d);
+            const dx = bounds[1][0] - bounds[0][0];
+            const dy = bounds[1][1] - bounds[0][1];
+            const x = (bounds[0][0] + bounds[1][0]) / 2;
+            const y = (bounds[0][1] + bounds[1][1]) / 2;
+
+            // Calcula a nova escala e valores de translação
+            // Adiciona um preenchimento (padding) para que o país não ocupe 100% da tela
+            const scale = Math.max(1, Math.min(8, 0.9 / Math.max(dx / width, dy / height))); // Limita o zoom máximo a 8
+            const translate = [width / 2 - scale * x, height / 2 - scale * y];
+
+            // Aplica a transformação de zoom e pan
+            svgMap.transition()
+                .duration(750) // Transição suave
+                .call(zoomBehavior.transform, d3.zoomIdentity.translate(translate[0], translate[1]).scale(scale));
+        }
+
+
+        // Funções de controle do mapa
+        function zoomIn() {
+            if (svgMap) svgMap.transition().duration(750).call(zoomBehavior.scaleBy, 2);
+        }
+
+        function zoomOut() {
+            if (svgMap) svgMap.transition().duration(750).call(zoomBehavior.scaleBy, 0.5);
         }
 
         function resetMap() {
-            svgMap.transition().duration(750).call(
-                zoomBehavior.transform,
-                d3.zoomIdentity // Reseta para a transformação de identidade (zoom padrão)
-            );
-            svgMap.selectAll(".country").classed("selected", false); // Remove seleção
-            countryDetailsPanel.classList.remove('show'); // Oculta painel
-            locationInfoElement.textContent = "Clique em um país no mapa para começar";
-            // Redefine para o Brasil como padrão no painel de info
-            updateAstronomyInfo(countriesData[defaultCountryCode].lat, countriesData[defaultCountryCode].lon);
-            document.getElementById('timezone').textContent = countriesData[defaultCountryCode].timezone;
-            document.getElementById('population').textContent = countriesData[defaultCountryCode].population;
-            document.getElementById('language').textContent = countriesData[defaultCountryCode].language;
-            document.getElementById('currency').textContent = countriesData[defaultCountryCode].currency;
-            exploreConstellationBtn.disabled = true; // Desabilita botão de constelação
-            constellationDetailsOutput.textContent = 'Detalhes da constelação aparecerão aqui.';
+            if (svgMap) svgMap.transition().duration(750).call(zoomBehavior.transform, d3.zoomIdentity);
+            // Redefine a rotação
+            currentRotation = 0;
+            if (projection) projection.rotate([currentRotation, 0]);
+            if (svgMap) svgMap.selectAll("path").attr("d", pathGenerator);
+            // Remove seleção de país
+            d3.selectAll(".country").classed("selected", false)
+                .attr("fill", "rgba(100, 149, 237, 0.4)")
+                .attr("stroke", "rgba(255, 255, 255, 0.2)")
+                .attr("stroke-width", 0.5);
+            activeCountryCode = null;
+            updateCountryInfo(null); // Limpa as informações do painel principal
+            if (rotationInterval) { // Pausa a rotação se estiver ativa
+                clearInterval(rotationInterval);
+                rotationInterval = null;
+                document.getElementById('rotate-map').innerHTML = '<i class="fas fa-sync-alt"></i> Rotacionar';
+            }
+            hideCountryDetails(); // Esconde o painel de detalhes lateral
+            hideMapCountryHoverInfo(); // Esconde a caixa de detalhes no mapa
+            currentHoveredCountryD3Datum = null; // Limpa o datum hovered
+            // Limpa os outputs do LLM
+            spaceFactOutput.textContent = 'Clique no botão para gerar uma curiosidade!';
+            constellationDetails.textContent = 'Detalhes da constelação aparecerão aqui.';
+            exploreConstellationBtn.disabled = true;
+            newsSummaryOutput.textContent = 'O resumo das notícias aparecerá aqui.'; // Limpa o resumo
+            summarizeNewsBtn.disabled = true; // Desabilita o botão de resumo
         }
 
-        function startRotation() {
-            if (rotationInterval) clearInterval(rotationInterval);
-            let currentRotation = 0;
-            rotationInterval = setInterval(() => {
-                currentRotation = (currentRotation + 0.5) % 360; // Rotaciona 0.5 graus a cada 50ms
-                projection.rotate([currentRotation, 0]);
-                svgMap.selectAll("path").attr("d", pathGenerator);
-            }, 50);
-            rotateMapBtn.textContent = 'Parar Rotação';
-            rotateMapBtn.classList.add('active'); // Opcional: Adicionar classe para indicar que está ativo
+        function rotateMap() {
+            if (rotationInterval) {
+                clearInterval(rotationInterval);
+                rotationInterval = null;
+                document.getElementById('rotate-map').innerHTML = '<i class="fas fa-sync-alt"></i> Rotacionar';
+            } else {
+                rotationInterval = setInterval(() => {
+                    currentRotation += 0.5; // Velocidade de rotação
+                    if (currentRotation > 360) currentRotation -= 360;
+                    if (projection) projection.rotate([currentRotation, 0]);
+                    if (svgMap) svgMap.selectAll("path").attr("d", pathGenerator);
+                }, 50); // Intervalo de rotação
+                document.getElementById('rotate-map').innerHTML = '<i class="fas fa-pause"></i> Pausar Rotação';
+            }
         }
 
-        function stopRotation() {
-            clearInterval(rotationInterval);
-            rotationInterval = null;
-            rotateMapBtn.textContent = 'Rotacionar';
-            rotateMapBtn.classList.remove('active');
+        // Função para mostrar a caixa de informações SIMPLIFICADAS no mapa ao lado do país (no hover)
+        function showMapCountryHoverInfo(countryCode, countryNameFromTopoJson, d3Event, d3Datum) {
+            // Não precisamos de countryData completo aqui, apenas o nome e o código para a bandeira
+            const displayCountryName = countryNameFromTopoJson || "País Desconhecido";
+            const flagSrc = countryCode ? `https://flagcdn.com/w20/${countryCode.toLowerCase()}.png` : PLACEHOLDER_FLAG_URL;
+
+            mapHoverFlag.src = flagSrc;
+            mapHoverFlag.onerror = () => { mapHoverFlag.src = PLACEHOLDER_FLAG_URL; }; // Fallback para bandeira
+            mapHoverName.textContent = displayCountryName;
+            
+            // Calcula a posição do centro do país no SVG
+            const centroid = pathGenerator.centroid(d3Datum);
+            
+            // Obtém a posição do container do mapa na tela
+            const mapContainer = document.getElementById('world-map');
+            const mapRect = mapContainer.getBoundingClientRect();
+
+            // Ajusta o centro do país pela transformação atual do zoom/pan
+            const transformedCentroid = currentTransform.apply(centroid);
+
+            // Posiciona o elemento div (map-country-hover-info) relativo ao container do mapa
+            // Adiciona um pequeno offset para não ficar exatamente em cima do país
+            mapCountryHoverInfo.style.left = (transformedCentroid[0] + mapRect.left + window.scrollX + 20) + 'px'; // Offset à direita
+            mapCountryHoverInfo.style.top = (transformedCentroid[1] + mapRect.top + window.scrollY - mapCountryHoverInfo.offsetHeight / 2) + 'px'; // Centraliza verticalmente
+
+            mapCountryHoverInfo.classList.add('show');
         }
 
-        // --- LLM Feature Implementations (simuladas) ---
+        // Função para esconder a caixa de informações SIMPLIFICADAS no mapa (no hover)
+        function hideMapCountryHoverInfo() {
+            mapCountryHoverInfo.classList.remove('show');
+        }
 
+        // Função para exibir o painel de detalhes do país (AGORA SÓ NO CLIQUE)
+        function displayCountryDetails(countryCode, countryNameFromTopoJson) {
+            const country = countriesData[countryCode];
+            const displayCountryName = countryNameFromTopoJson || "País Desconhecido";
+
+            detailsFlag.src = countryCode ? `https://flagcdn.com/w40/${countryCode.toLowerCase()}.png` : PLACEHOLDER_FLAG_URL;
+            detailsFlag.alt = `${displayCountryName} Flag`;
+            detailsFlag.onerror = () => { detailsFlag.src = PLACEHOLDER_FLAG_URL; }; // Fallback para bandeira
+            detailsCountryName.textContent = displayCountryName;
+            detailsCapital.textContent = country ? country.capital : "--";
+            detailsPopulation.textContent = country ? country.population : "--";
+            detailsLanguage.textContent = country ? country.language : "--";
+            detailsCurrency.textContent = country ? country.currency : "--";
+            detailsCoords.textContent = country ? `${country.lat}°N, ${Math.abs(country.lon)}°${country.lon < 0 ? 'W' : 'E'}` : "--";
+            detailsTimezone.textContent = country ? country.timezone : "--";
+            countryDetailsPanel.classList.add('show');
+
+            // Chamar a função de busca de notícias para o painel de detalhes
+            fetchNews(country.name, detailsNewsContent);
+            newsSummaryOutput.textContent = 'O resumo das notícias aparecerá aqui.'; // Limpa o resumo ao selecionar novo país
+            summarizeNewsBtn.disabled = true; // Desabilita o botão até que as notícias sejam carregadas
+        }
+
+        // Função para esconder o painel de detalhes do país
+        function hideCountryDetails() {
+            countryDetailsPanel.classList.remove('show');
+        }
+
+
+        // Atualizar informações do país selecionado (painel principal)
+        function updateCountryInfo(countryCode) {
+            const country = countriesData[countryCode];
+            if (!country) {
+                // Se nenhum país mapeado ou um país não mapeado foi clicado
+                document.getElementById('current-date').textContent = new Date().toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
+                document.getElementById('stellar-time').textContent = '--:--:--';
+                document.getElementById('location-info').textContent = 'Clique em um país no mapa para começar';
+                document.getElementById('sidereal-time').textContent = '--:--:--';
+                document.getElementById('constellation').textContent = '--';
+                document.getElementById('sun-altitude').textContent = '--°';
+                document.getElementById('moon-phase').textContent = '--';
+                document.getElementById('timezone').textContent = '--';
+                document.getElementById('population').textContent = '--';
+                document.getElementById('language').textContent = '--';
+                document.getElementById('currency').textContent = '--';
+                detailsNewsContent.innerHTML = '<p>Notícias do país aparecerão aqui.</p>'; // Limpa notícias no painel de detalhes
+                document.getElementById('visible-planets').innerHTML = '<li>Carregando...</li>'; // Reseta planetas
+                document.getElementById('meteor-showers').innerHTML = '<p>Nenhuma chuva de meteoros ativa</p>'; // Reseta chuvas de meteoros
+                
+                exploreConstellationBtn.disabled = true; // Desabilita o botão se não houver país
+                constellationDetails.textContent = 'Detalhes da constelação aparecerão aqui.'; // Limpa detalhes
+                newsSummaryOutput.textContent = 'O resumo das notícias aparecerá aqui.'; // Limpa o resumo
+                summarizeNewsBtn.disabled = true; // Desabilita o botão de resumo
+                return;
+            }
+            
+            // Atualizar informações básicas
+            document.getElementById('current-date').textContent = new Date().toLocaleDateString('pt-BR', { 
+                day: 'numeric', 
+                month: 'long', 
+                year: 'numeric' 
+            });
+            
+            document.getElementById('location-info').textContent = `${country.capital}, ${country.name} (${country.timezone})`;
+            
+            // Calcular hora estelar com Astronomy Engine
+            const now = new Date();
+            // Verifica se window.Astronomy está disponível
+            if (typeof window.Astronomy !== 'undefined') {
+                const observer = new window.Astronomy.Observer(country.lat, country.lon, 0);
+                const siderealTime = window.Astronomy.SiderealTime(observer);
+                
+                const siderealHours = Math.floor(siderealTime);
+                const siderealMinutes = Math.floor((siderealTime - siderealHours) * 60);
+                const siderealSeconds = Math.floor((((siderealTime - siderealHours) * 60) - siderealMinutes) * 60);
+                
+                document.getElementById('sidereal-time').textContent = 
+                    `${siderealHours.toString().padStart(2, '0')}:${siderealMinutes.toString().padStart(2, '0')}:${siderealSeconds.toString().padStart(2, '0')}`;
+                
+                // Posição do Sol e Lua
+                const sunPos = window.Astronomy.Equator('Sun', now, observer, true, true);
+                const moonPhase = window.Astronomy.MoonPhase(now);
+                
+                let phaseText = "";
+                if (moonPhase < 0.125 || moonPhase >= 0.875) phaseText = "Lua Nova";
+                else if (moonPhase >= 0.125 && moonPhase < 0.375) phaseText = "Quarto Crescente";
+                else if (moonPhase >= 0.375 && moonPhase < 0.625) phaseText = "Lua Cheia";
+                else if (moonPhase >= 0.625 && moonPhase < 0.875) phaseText = "Quarto Minguante";
+                
+                document.getElementById('sun-altitude').textContent = `${sunPos.altitude.toFixed(1)}°`;
+                document.getElementById('moon-phase').textContent = `${phaseText} (${(moonPhase * 100).toFixed(1)}%)`;
+
+            } else {
+                console.warn("Astronomy Engine não carregada ou disponível globalmente.");
+                document.getElementById('sidereal-time').textContent = '--:--:--';
+                document.getElementById('sun-altitude').textContent = '--°';
+                document.getElementById('moon-phase').textContent = '--';
+            }
+
+            // Hora local (ajustada pelo fuso horário do país)
+            const localTime = new Date();
+            // Para simular o fuso horário do país, precisamos ajustar a hora UTC
+            // Exemplo simples: assume que o timezone é um offset em horas de UTC.
+            // Para fusos horários complexos, uma biblioteca como moment-timezone seria necessária.
+            const offsetHours = parseInt(country.timezone.replace('UTC', '').replace('+', ''));
+            localTime.setUTCHours(localTime.getUTCHours() + offsetHours);
+            document.getElementById('stellar-time').textContent = localTime.toLocaleTimeString('pt-BR', { hour12: false });
+            
+            // Constelação principal
+            document.getElementById('constellation').textContent = country.constellations[0];
+            exploreConstellationBtn.disabled = false; // Habilita o botão
+
+            // Informações adicionais do país
+            document.getElementById('timezone').textContent = country.timezone;
+            document.getElementById('population').textContent = country.population;
+            document.getElementById('language').textContent = country.language;
+            document.getElementById('currency').textContent = country.currency;
+
+            // Atualizar planetas visíveis (simulação)
+            updateVisiblePlanets();
+            // Atualizar chuvas de meteoros (simulação)
+            updateMeteorShowers();
+
+            // A busca de notícias agora é feita em displayCountryDetails
+            // fetchNews(country.name); // Removido daqui
+        }
+
+        // Função para atualizar planetas visíveis
+        function updateVisiblePlanets() {
+            const visiblePlanetsList = document.getElementById('visible-planets');
+            visiblePlanetsList.innerHTML = ''; // Limpa a lista
+
+            visiblePlanetsData.forEach(planet => {
+                const li = document.createElement('li');
+                li.innerHTML = `<span class="planet-icon" style="background-color: ${planet.color};"></span> ${planet.name}`;
+                visiblePlanetsList.appendChild(li);
+            });
+        }
+
+        // Função para atualizar chuvas de meteoros
+        function updateMeteorShowers() {
+            const meteorShowersDiv = document.getElementById('meteor-showers');
+            meteorShowersDiv.innerHTML = ''; // Limpa o conteúdo
+
+            const activeShowers = meteorShowersData.filter(shower => shower.active);
+
+            if (activeShowers.length > 0) {
+                activeShowers.forEach(shower => {
+                    const p = document.createElement('p');
+                    p.innerHTML = `<span class="info-label">${shower.name}:</span> Pico em ${shower.peak}`;
+                    meteorShowersDiv.appendChild(p);
+                });
+            } else {
+                meteorShowersDiv.innerHTML = '<p>Nenhuma chuva de meteoros ativa</p>';
+            }
+        }
+
+        // Função para buscar notícias da NewsAPI
+        // Agora aceita um elemento de destino para as notícias
+        async function fetchNews(query, targetElement) {
+            targetElement.innerHTML = '<p>Carregando notícias...</p>'; // Mensagem de carregamento
+            newsSummaryOutput.textContent = 'O resumo das notícias aparecerá aqui.'; // Limpa o resumo anterior
+            summarizeNewsBtn.disabled = true; // Desabilita o botão enquanto carrega
+
+            // **IMPORTANTE: Substitua 'SUA_API_KEY_DA_NEWSAPI' pela sua chave real da NewsAPI.**
+            // Você pode obter uma chave gratuita em: https://newsapi.org/
+            const NEWS_API_KEY = 'SUA_API_KEY_DA_NEWSAPI'; 
+
+            // Verifica se a chave da API é a placeholder
+            if (NEWS_API_KEY === 'SUA_API_KEY_DA_NEWSAPI' || NEWS_API_KEY === '') {
+                targetElement.innerHTML = `
+                    <p style="color: var(--news-red);">
+                        As notícias não podem ser carregadas.
+                        <br><br>
+                        **Causas comuns e soluções:**
+                        <br>
+                        1.  **Chave de API ausente ou de demonstração:** Você precisa obter sua própria chave de API gratuita em <a href="https://newsapi.org/" target="_blank" style="color: var(--neon-blue); text-decoration: underline;">newsapi.org</a> e substituir 'SUA_API_KEY_DA_NEWSAPI' no código.
+                        <br>
+                        2.  **Executando fora do localhost:** O plano de desenvolvedor da NewsAPI só permite requisições diretas do navegador se o aplicativo estiver sendo executado em 'localhost'. Por favor, execute o aplicativo em um servidor local (ex: \`python -m http.server\` no terminal e acesse \`http://localhost:8000\`).
+                        <br>
+                        3.  **Limite de requisições:** Você pode ter atingido o limite de requisições diárias da NewsAPI.
+                    </p>
+                `;
+                console.error("Erro NewsAPI: Chave de API de demonstração ou ausente/inválida, ou aplicativo não está em localhost. Verifique as instruções no código.");
+                return; // Sai da função para não tentar fazer a requisição
+            }
+
+            // Usando encodeURIComponent para garantir que a query seja formatada corretamente para a URL
+            const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&language=pt&sortBy=relevancy&apiKey=${NEWS_API_KEY}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.status === 'ok' && data.articles.length > 0) {
+                    targetElement.innerHTML = ''; // Limpa o conteúdo anterior
+                    data.articles.slice(0, 5).forEach(article => { // Limita a 5 notícias
+                        const newsItem = document.createElement('div');
+                        newsItem.classList.add('news-item');
+                        newsItem.innerHTML = `
+                            <h3><a href="${article.url}" target="_blank">${article.title}</a></h3>
+                            <p>${article.description || 'Sem descrição.'}</p>
+                            <div class="news-source">
+                                <span>${article.source.name}</span>
+                                <span>${new Date(article.publishedAt).toLocaleDateString('pt-BR')}</span>
+                            </div>
+                        `;
+                        targetElement.appendChild(newsItem);
+                    });
+                    summarizeNewsBtn.disabled = false; // Habilita o botão de resumo se houver notícias
+                } else {
+                    targetElement.innerHTML = `<p>Nenhuma notícia encontrada para "${query}".</p>`;
+                    if (data.message) {
+                        console.error("Erro na NewsAPI:", data.message);
+                        // Mensagem mais específica para o erro de localhost
+                        if (data.message.includes("Requests from the browser are not allowed on the Developer plan, except from localhost")) {
+                             targetElement.innerHTML += `<p style="color: var(--news-red); font-size: 0.8rem;">Erro da API: ${data.message}. Por favor, execute o aplicativo em 'localhost' ou obtenha um plano pago da NewsAPI.</p>`;
+                        } else {
+                            targetElement.innerHTML += `<p style="color: var(--news-red); font-size: 0.8rem;">Erro da API: ${data.message}</p>`;
+                        }
+                    }
+                    summarizeNewsBtn.disabled = true; // Desabilita o botão se não houver notícias
+                }
+            } catch (error) {
+                console.error("Erro ao buscar notícias:", error);
+                targetElement.innerHTML = `<p style="color: var(--news-red);">Erro ao carregar notícias. Verifique sua conexão ou chave da API.</p>`;
+                summarizeNewsBtn.disabled = true; // Desabilita o botão em caso de erro
+            }
+        }
+
+        // Função para gerar uma curiosidade espacial usando a API Gemini
         async function generateSpaceFact() {
             spaceFactOutput.classList.add('loading-text');
             spaceFactOutput.textContent = 'Gerando curiosidade...';
             generateSpaceFactBtn.disabled = true;
 
             try {
-                const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: "Gere uma curiosidade interessante e concisa sobre o espaço ou astronomia. Não inclua títulos ou formatação Markdown." }] });
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // Canvas injetará a chave da API em tempo de execução
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer YOUR_OPENAI_API_KEY` // **Substitua pela sua chave REAL da OpenAI**
-                    },
-                    body: JSON.stringify({
-                        model: "gpt-3.5-turbo",
-                        messages: [{ role: "user", content: "Gere uma curiosidade fascinante e concisa sobre o espaço ou astronomia. Max 30 palavras." }],
-                        max_tokens: 50,
-                        temperature: 0.7
-                    })
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
                 });
-                const data = await response.json();
-                if (data.choices && data.choices.length > 0) {
-                    spaceFactOutput.textContent = data.choices[0].message.content.trim();
+
+                const result = await response.json();
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    spaceFactOutput.textContent = text;
                 } else {
-                    spaceFactOutput.textContent = "Não foi possível gerar a curiosidade. Tente novamente.";
+                    spaceFactOutput.textContent = 'Não foi possível gerar a curiosidade. Tente novamente.';
+                    console.error("Erro na resposta da API Gemini:", result);
                 }
             } catch (error) {
-                console.error("Erro ao gerar curiosidade espacial:", error);
-                spaceFactOutput.textContent = "Erro ao gerar curiosidade. Verifique sua chave da API.";
+                spaceFactOutput.textContent = 'Erro ao conectar com a IA. Verifique sua conexão.';
+                console.error("Erro ao chamar a API Gemini para curiosidade:", error);
             } finally {
                 spaceFactOutput.classList.remove('loading-text');
                 generateSpaceFactBtn.disabled = false;
             }
         }
 
-        async function summarizeNews() {
-            newsSummaryOutput.classList.add('loading-text');
-            newsSummaryOutput.textContent = 'Resumindo notícias...';
-            summarizeNewsBtn.disabled = true;
-
-            const newsArticles = Array.from(detailsNewsContent.querySelectorAll('.news-item h3 a'))
-                                        .map(a => a.textContent)
-                                        .join('\n');
-            
-            if (newsArticles.length === 0) {
-                newsSummaryOutput.textContent = 'Não há notícias para resumir.';
-                newsSummaryOutput.classList.remove('loading-text');
-                summarizeNewsBtn.disabled = false;
+        // Função para explorar detalhes da constelação usando a API Gemini
+        async function exploreConstellation() {
+            const currentConstellation = document.getElementById('constellation').textContent;
+            if (currentConstellation === '--' || !activeCountryCode) {
+                constellationDetails.textContent = 'Selecione um país para explorar sua constelação principal.';
                 return;
             }
 
-            try {
-                const response = await fetch('https://api.openai.com/v1/chat/completions', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer YOUR_OPENAI_API_KEY` // **Substitua pela sua chave REAL da OpenAI**
-                    },
-                    body: JSON.stringify({
-                        model: "gpt-3.5-turbo",
-                        messages: [{ role: "user", content: `Resuma as seguintes notícias em português, de forma concisa e com 2-3 frases: \n\n${newsArticles}` }],
-                        max_tokens: 150,
-                        temperature: 0.5
-                    })
-                });
-                const data = await response.json();
-                if (data.choices && data.choices.length > 0) {
-                    newsSummaryOutput.textContent = data.choices[0].message.content.trim();
-                } else {
-                    newsSummaryOutput.textContent = "Não foi possível gerar o resumo. Tente novamente.";
-                }
-            } catch (error) {
-                console.error("Erro ao resumir notícias:", error);
-                newsSummaryOutput.textContent = "Erro ao resumir notícias. Verifique sua chave da API.";
-            } finally {
-                newsSummaryOutput.classList.remove('loading-text');
-                summarizeNewsBtn.disabled = false;
-            }
-        }
-
-        async function exploreConstellation() {
-            constellationDetailsOutput.classList.add('loading-text');
-            constellationDetailsOutput.textContent = 'Explorando constelação...';
+            constellationDetails.classList.add('loading-text');
+            constellationDetails.textContent = `Explorando ${currentConstellation}...`;
             exploreConstellationBtn.disabled = true;
 
-            const currentConstellation = constellationElement.textContent;
-            if (currentConstellation === "--") {
-                constellationDetailsOutput.textContent = "Selecione um país no mapa para ver a constelação atual.";
-                constellationDetailsOutput.classList.remove('loading-text');
-                exploreConstellationBtn.disabled = false;
-                return;
-            }
-
             try {
-                const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: `Forneça informações interessantes e concisas sobre a constelação ${currentConstellation}, incluindo sua mitologia e como encontrá-la no céu. Não inclua títulos ou formatação Markdown.` }] });
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // Canvas injetará a chave da API em tempo de execução
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer YOUR_OPENAI_API_KEY` // **Substitua pela sua chave REAL da OpenAI**
-                    },
-                    body: JSON.stringify({
-                        model: "gpt-3.5-turbo",
-                        messages: [{ role: "user", content: `Descreva a constelação '${currentConstellation}' de forma interessante, incluindo sua história ou principais características. Max 80 palavras.` }],
-                        max_tokens: 200,
-                        temperature: 0.7
-                    })
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
                 });
-                const data = await response.json();
-                if (data.choices && data.choices.length > 0) {
-                    constellationDetailsOutput.textContent = data.choices[0].message.content.trim();
+
+                const result = await response.json();
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    constellationDetails.textContent = text;
                 } else {
-                    constellationDetailsOutput.textContent = "Não foi possível obter detalhes da constelação. Tente novamente.";
+                    constellationDetails.textContent = 'Não foi possível obter detalhes da constelação. Tente novamente.';
+                    console.error("Erro na resposta da API Gemini para constelação:", result);
                 }
             } catch (error) {
-                console.error("Erro ao explorar constelação:", error);
-                constellationDetailsOutput.textContent = "Erro ao explorar constelação. Verifique sua chave da API.";
+                constellationDetails.textContent = 'Erro ao conectar com a IA. Verifique sua conexão.';
+                console.error("Erro ao chamar a API Gemini para constelação:", error);
             } finally {
-                constellationDetailsOutput.classList.remove('loading-text');
+                constellationDetails.classList.remove('loading-text');
                 exploreConstellationBtn.disabled = false;
             }
         }
 
+        // Função para resumir notícias usando a API Gemini
+        async function summarizeNews(countryName) {
+            newsSummaryOutput.classList.add('loading-text');
+            newsSummaryOutput.textContent = 'Gerando resumo...';
+            summarizeNewsBtn.disabled = true;
 
-        // --- Event Listeners ---
+            try {
+                const newsItems = detailsNewsContent.querySelectorAll('.news-item');
+                let newsText = "";
+                newsItems.forEach(item => {
+                    const title = item.querySelector('h3 a').textContent;
+                    const description = item.querySelector('p').textContent;
+                    newsText += `Título: ${title}\nDescrição: ${description}\n\n`;
+                });
 
-        themeToggle.addEventListener('click', () => {
+                if (!newsText.trim()) {
+                    newsSummaryOutput.textContent = 'Nenhuma notícia para resumir.';
+                    return;
+                }
+
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: `Resuma as seguintes notícias sobre ${countryName} de forma concisa, destacando os pontos mais importantes. Não inclua títulos ou formatação Markdown:\n\n${newsText}` }] });
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // Canvas injetará a chave da API em tempo de execução
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    newsSummaryOutput.textContent = text;
+                } else {
+                    newsSummaryOutput.textContent = 'Não foi possível gerar o resumo. Tente novamente.';
+                    console.error("Erro na resposta da API Gemini para resumo de notícias:", result);
+                }
+            } catch (error) {
+                newsSummaryOutput.textContent = 'Erro ao conectar com a IA para resumir notícias. Verifique sua conexão.';
+                console.error("Erro ao chamar a API Gemini para resumo de notícias:", error);
+            } finally {
+                newsSummaryOutput.classList.remove('loading-text');
+                // O botão de resumo deve ser reabilitado apenas se houver notícias para resumir
+                const newsCount = detailsNewsContent.querySelectorAll('.news-item').length;
+                if (newsCount > 0) {
+                    summarizeNewsBtn.disabled = false;
+                }
+            }
+        }
+
+
+        // Alternar modo dia/noite
+        document.getElementById('theme-toggle').addEventListener('click', () => {
             document.body.classList.toggle('day-mode');
-            const isDayMode = document.body.classList.contains('day-mode');
-            themeToggle.innerHTML = isDayMode ? '<i class="fas fa-sun"></i> Modo Diurno' : '<i class="fas fa-moon"></i> Modo Noturno';
-        });
-
-        zoomInBtn.addEventListener('click', () => {
-            svgMap.transition().duration(200).call(zoomBehavior.scaleBy, 1.2);
-        });
-
-        zoomOutBtn.addEventListener('click', () => {
-            svgMap.transition().duration(200).call(zoomBehavior.scaleBy, 0.8);
-        });
-
-        resetMapBtn.addEventListener('click', resetMap);
-
-        rotateMapBtn.addEventListener('click', () => {
-            if (rotationInterval) {
-                stopRotation();
+            const toggleButton = document.getElementById('theme-toggle');
+            if (document.body.classList.contains('day-mode')) {
+                toggleButton.innerHTML = '<i class="fas fa-sun"></i> Modo Diurno';
             } else {
-                startRotation();
+                toggleButton.innerHTML = '<i class="fas fa-moon"></i> Modo Noturno';
             }
         });
 
+        // Adicionar listeners para os botões de controle do mapa
+        document.getElementById('zoom-in').addEventListener('click', zoomIn);
+        document.getElementById('zoom-out').addEventListener('click', zoomOut);
+        document.getElementById('reset-map').addEventListener('click', resetMap);
+        document.getElementById('rotate-map').addEventListener('click', rotateMap);
+        
+        // Listener para o novo botão de atualização de notícias no painel de detalhes
         refreshDetailsNewsBtn.addEventListener('click', () => {
-            if (currentSelectedCountryData) {
-                loadNewsForCountry(currentSelectedCountryData.name);
+            if (activeCountryCode) {
+                const selectedCountryName = countriesData[activeCountryCode] ? countriesData[activeCountryCode].name : null;
+                if (selectedCountryName) {
+                    fetchNews(selectedCountryName, detailsNewsContent); // Passa o elemento de destino correto
+                } else {
+                    detailsNewsContent.innerHTML = '<p style="color: var(--news-red);">Não foi possível atualizar notícias para este país (dados detalhados ausentes).</p>';
+                }
+            } else {
+                detailsNewsContent.innerHTML = '<p style="color: var(--news-red);">Selecione um país no mapa para ver as últimas notícias.</p>';
             }
         });
 
+        // Adicionar listeners para os botões LLM
         generateSpaceFactBtn.addEventListener('click', generateSpaceFact);
-        summarizeNewsBtn.addEventListener('click', summarizeNews);
         exploreConstellationBtn.addEventListener('click', exploreConstellation);
+        summarizeNewsBtn.addEventListener('click', () => summarizeNews(countriesData[activeCountryCode].name)); // Listener para o novo botão de resumo
 
-
-        // --- Inicialização ---
-
-        document.addEventListener('DOMContentLoaded', () => {
-            updateDateTime();
-            setInterval(updateDateTime, 1000); // Atualiza a cada segundo
-            
-            // Inicia o mapa
-            renderMap(); 
-
-            // Define as informações iniciais para o Brasil no painel da direita
-            const brazilData = countriesData[defaultCountryCode];
-            document.getElementById('timezone').textContent = brazilData.timezone;
-            document.getElementById('population').textContent = brazilData.population;
-            document.getElementById('language').textContent = brazilData.language;
-            document.getElementById('currency').textContent = brazilData.currency;
-            updateAstronomyInfo(brazilData.lat, brazilData.lon);
-            
-            // Define a constelação inicial como uma das do Brasil
-            constellationElement.textContent = brazilData.constellations[0] || "--";
+        // Inicializa ResizeObserver para o mapa
+        const resizeObserver = new ResizeObserver(entries => {
+            for (let entry of entries) {
+                if (entry.target.id === 'world-map') {
+                    // Adiciona um pequeno atraso para garantir que o layout esteja estável
+                    setTimeout(() => {
+                        renderMap(); // Redesenha o mapa quando seu contêiner é redimensionado
+                    }, 100); 
+                }
+            }
         });
+
+        // Inicializar a aplicação ao carregar a página
+        window.onload = function() {
+            const mapLoading = document.getElementById('map-loading');
+            mapLoading.classList.add('show');
+
+            // Começa a observar o contêiner do mapa imediatamente
+            resizeObserver.observe(document.getElementById('world-map'));
+
+            // Chamada inicial para renderizar o mapa. Um pequeno atraso pode ajudar com o layout inicial.
+            setTimeout(() => {
+                renderMap();
+            }, 200); // Atraso de 200ms para a renderização inicial do mapa
+
+            // Atualiza o relógio e dados astronômicos a cada segundo
+            setInterval(() => {
+                if (activeCountryCode) {
+                    updateCountryInfo(activeCountryCode);
+                } else {
+                    // Atualiza apenas a data e hora local se nenhum país estiver selecionado
+                    document.getElementById('current-date').textContent = new Date().toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
+                    document.getElementById('stellar-time').textContent = new Date().toLocaleTimeString('pt-BR', { hour12: false });
+                }
+            }, 1000);
+            // Mensagem de console para a NewsAPI
+            console.warn("Lembrete: Para que as notícias funcionem, você precisa de uma chave de API válida da NewsAPI e o aplicativo deve ser executado em 'localhost' ou em um plano pago da NewsAPI.");
+        };
+
+        // Movimentar a caixa de detalhes no mapa com o mouse
+        document.addEventListener('mousemove', (e) => {
+            // Apenas atualiza a posição se a caixa de detalhes no mapa estiver visível E houver um país hovered
+            if (mapCountryHoverInfo.classList.contains('show') && currentHoveredCountryD3Datum) {
+                // Recalcula a posição com base no centro do país e no offset
+                const centroid = pathGenerator.centroid(currentHoveredCountryD3Datum);
+                const mapContainer = document.getElementById('world-map');
+                const mapRect = mapContainer.getBoundingClientRect();
+                const transformedCentroid = currentTransform.apply(centroid);
+
+                mapCountryHoverInfo.style.left = (transformedCentroid[0] + mapRect.left + window.scrollX + 20) + 'px';
+                mapCountryHoverInfo.style.top = (transformedCentroid[1] + mapRect.top + window.scrollY - mapCountryHoverInfo.offsetHeight / 2) + 'px';
+            }
+        });
+
     </script>
 </body>
 </html>
+# mapa-ataualizado
